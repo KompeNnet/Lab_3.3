@@ -11,14 +11,14 @@ namespace Lab_3._3.Books.History
     class Biography : Historical
     {
         [DataMember]
-        public bool IsAuthoBiography { get; set; }
+        public string Person { get; set; }
 
         [DataMember]
         public string Years { get; set; }
 
-        public Biography(string author, string name, string office, string period, bool isAuthoBiography, string years) : base(author, name, office, period)
+        public Biography(string author, string name, string office, string period, string person, string years) : base(author, name, office, period)
         {
-            IsAuthoBiography = isAuthoBiography;
+            Person = person;
             Years = years;
         }
     }

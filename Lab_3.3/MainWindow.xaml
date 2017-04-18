@@ -5,19 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_3._3"
         mc:Ignorable="d"
-        Title="Serialization" Height="326" Width="557">
+        Title="Serialization" Height="326" Width="663">
     <Grid>
-        <Label Content="Author" HorizontalAlignment="Left" Height="28" Margin="10,5,0,0" VerticalAlignment="Top" Width="98"/>
-        <TextBox x:Name="InpAuthor" HorizontalAlignment="Left" Height="22" Margin="10,33,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
-        <Label Content="Name" HorizontalAlignment="Left" Height="28" Margin="10,55,0,0" VerticalAlignment="Top" Width="98"/>
-        <TextBox x:Name="InpName" HorizontalAlignment="Left" Height="22" Margin="10,83,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
-        <Label Content="Publishing office" HorizontalAlignment="Left" Height="28" Margin="10,106,0,0" VerticalAlignment="Top" Width="98"/>
-        <TextBox x:Name="InpPublishing" HorizontalAlignment="Left" Height="22" Margin="10,134,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
-        <Label Content="Book genre" HorizontalAlignment="Left" Height="28" Margin="10,161,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox x:Name="ChooseGenre" HorizontalAlignment="Left" Height="22" Margin="10,189,0,0" VerticalAlignment="Top" Width="134">
+        <Label Content="Author" HorizontalAlignment="Left" Height="28" Margin="10,27,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpAuthor" HorizontalAlignment="Left" Height="22" Margin="10,55,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Name" HorizontalAlignment="Left" Height="28" Margin="10,77,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpName" HorizontalAlignment="Left" Height="22" Margin="10,105,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Publishing office" HorizontalAlignment="Left" Height="28" Margin="10,128,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpPublishing" HorizontalAlignment="Left" Height="22" Margin="10,156,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Book genre" HorizontalAlignment="Left" Height="28" Margin="10,183,0,0" VerticalAlignment="Top" Width="98"/>
+        <ComboBox x:Name="ChooseGenre" HorizontalAlignment="Left" Height="22" Margin="10,211,0,0" VerticalAlignment="Top" Width="134" SelectedIndex="0" SelectionChanged="ChooseGenre_SelectionChanged">
             <ListBoxItem Content="Encyclopedia"/>
             <ListBoxItem Content="Fiction"/>
             <ListBoxItem Content="Historical"/>
         </ComboBox>
+        <GroupBox x:Name="EncycloGroup" Header="Encyclopedia" Background="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="161,0,0,0" Width="175">
+            <Grid Margin="0,0,-12,-12">
+                <Label Content="Subject" Height="28" Margin="10,10,95,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="InpEnSubject" Height="22" Margin="10,38,59,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="FictionGroup" Header="Fiction" Background="White" HorizontalAlignment="Left" Margin="161,0,0,0" Width="350">
+            <Grid Margin="0,0,-12,-12">
+                <Label Content="Type (original, fanfiction)" Height="28" Margin="10,9,196,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="InpFictType" Height="22" Margin="10,37,206,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+                <Label Content="Age limit" Height="28" Margin="10,59,242,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="InpFictAge" Height="22" Margin="10,87,206,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+                <GroupBox x:Name="TravellingGruop" Header="Travelling" Visibility="Hidden" Height="160" Margin="0,115,10,0" VerticalAlignment="Top">
+                    <Grid Margin="0,0,0,0">
+                        <Label Content="Countries" Height="28" Margin="10,10,45,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="InpCountries" Margin="10,38,9,10" TextWrapping="Wrap"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="FantasticTalesGroup" Header="Fantastic Tales" Margin="0,115,0,10" HorizontalAlignment="Left" Width="165">
+                    <Grid Margin="0,0,0,0">
+                        <Label Content="coWorkers" Height="28" Margin="10,10,45,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="InpFictFantCoWorkers" Margin="10,38,9,78" TextWrapping="Wrap"/>
+                        <Label Content="Type" Margin="10,0,45,32" Height="28" VerticalAlignment="Bottom"/>
+                        <ComboBox x:Name="ChooseFictFantType" Margin="10,0,10,10" SelectedIndex="0" SelectionChanged="ChooseGenre_SelectionChanged" Height="22" VerticalAlignment="Bottom">
+                            <ListBoxItem Content="FairyTales"/>
+                            <ListBoxItem Content="Science Fiction"/>
+                        </ComboBox>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="FairyTalesGroup" Header="FairyTales" Visibility="Hidden" Margin="165,10,10,0" Height="114" VerticalAlignment="Top">
+                    <Grid Margin="0,0,-2,-3">
+                        <CheckBox x:Name="CheckFictFantFairyIsIllustrated" Content="is illustrated" Margin="10,10,10,0" Height="18" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="ScienceFictionGroup" Header="Science Fiction" Margin="165,10,10,0" Height="114" VerticalAlignment="Top">
+                    <Grid Margin="0,0,0,0">
+                        <CheckBox x:Name="CheckFictFantFairyIsEarth" Content="is Earth" Margin="10,10,10,0" Height="18" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="HistoricalGroup" Header="Historical" Visibility="Hidden" Background="White" HorizontalAlignment="Left" Margin="161,0,0,0" Width="175">
+            <Grid Margin="0,0,0,-12">
+                <Label Content="Period" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="98"/>
+                <TextBox x:Name="InpHistPeriod" HorizontalAlignment="Left" Height="22" Margin="10,38,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+                <Label Content="Type" HorizontalAlignment="Left" Height="28" Margin="10,60,0,0" VerticalAlignment="Top" Width="98"/>
+                <ComboBox x:Name="ChooseHistType" HorizontalAlignment="Left" Height="22" Margin="10,88,0,0" VerticalAlignment="Top" Width="134" SelectedIndex="0" SelectionChanged="ChooseGenre_SelectionChanged">
+                    <ListBoxItem Content="Art"/>
+                    <ListBoxItem Content="Biography"/>
+                </ComboBox>
+                <GroupBox x:Name="ArtGroup" Header="Art" Visibility="Hidden" Margin="0,115,-2,10">
+                    <Grid Margin="0,0,0,0">
+                        <Label Content="Form of art" Height="28" Margin="10,10,73,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="InpHistArtForm" Height="22" Margin="9,38,10,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="BiographyGroup" Header="Biography" Visibility="Hidden" Margin="0,115,0,10">
+                    <Grid Margin="0,0,0,0">
+                        <Label Content="Person" Height="28" Margin="10,10,73,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="InpHistBioPerson" Height="22" Margin="9,38,10,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+                        <Label Content="Years of life" Height="28" Margin="10,60,73,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="InpHistBioYears" Height="22" Margin="10,88,10,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
