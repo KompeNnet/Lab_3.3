@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_3._3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Serialization" Height="326" Width="557">
     <Grid>
-        
+        <Label Content="Author" HorizontalAlignment="Left" Height="28" Margin="10,5,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpAuthor" HorizontalAlignment="Left" Height="22" Margin="10,33,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Name" HorizontalAlignment="Left" Height="28" Margin="10,55,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpName" HorizontalAlignment="Left" Height="22" Margin="10,83,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Publishing office" HorizontalAlignment="Left" Height="28" Margin="10,106,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="InpPublishing" HorizontalAlignment="Left" Height="22" Margin="10,134,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Book genre" HorizontalAlignment="Left" Height="28" Margin="10,161,0,0" VerticalAlignment="Top" Width="98"/>
+        <ComboBox x:Name="ChooseGenre" HorizontalAlignment="Left" Height="22" Margin="10,189,0,0" VerticalAlignment="Top" Width="134">
+            <ListBoxItem Content="Encyclopedia"/>
+            <ListBoxItem Content="Fiction"/>
+            <ListBoxItem Content="Historical"/>
+        </ComboBox>
     </Grid>
 </Window>
