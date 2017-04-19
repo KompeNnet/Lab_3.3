@@ -27,7 +27,7 @@ namespace Lab_3._3
         public MainWindow()
         {
             InitializeComponent();
-            groupsDictionary = new Dictionary<int, GroupBox>
+            this.groupsDictionary = new Dictionary<int, GroupBox>
             {
                 { 0, EncycloGroup },
                 { 1, FictionGroup },
@@ -37,14 +37,16 @@ namespace Lab_3._3
 
         private void ChooseGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*groupsDictionary[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;
-            for (int i = 0; i < groupsDictionary.Count; i++)
+            int index = ChooseGenre.SelectedIndex;
+            if (index != -1)
             {
-                if (i != ChooseGenre.SelectedIndex)
+                for (int i = 0; i < groupsDictionary.Count; i++)
                 {
-                    groupsDictionary[ChooseGenre.SelectedIndex].Visibility = Visibility.Hidden;
+                    if (index != i)
+                        groupsDictionary[i].Visibility = Visibility.Hidden;
                 }
-            }*/
+                groupsDictionary[index].Visibility = Visibility.Visible;    
+            }
         }
     }
 }

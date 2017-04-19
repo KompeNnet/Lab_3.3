@@ -14,7 +14,7 @@
         <Label Content="Publishing office" HorizontalAlignment="Left" Height="28" Margin="10,128,0,0" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="InpPublishing" HorizontalAlignment="Left" Height="22" Margin="10,156,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
         <Label Content="Book genre" HorizontalAlignment="Left" Height="28" Margin="10,183,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox x:Name="ChooseGenre" HorizontalAlignment="Left" Height="22" Margin="10,211,0,0" VerticalAlignment="Top" Width="134" SelectedIndex="0" SelectionChanged="ChooseGenre_SelectionChanged">
+        <ComboBox x:Name="ChooseGenre" HorizontalAlignment="Left" Height="22" Margin="10,211,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="ChooseGenre_SelectionChanged">
             <ListBoxItem Content="Encyclopedia"/>
             <ListBoxItem Content="Fiction"/>
             <ListBoxItem Content="Historical"/>
@@ -25,7 +25,7 @@
                 <TextBox x:Name="InpEnSubject" Height="22" Margin="10,38,59,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="FictionGroup" Header="Fiction" Background="White" HorizontalAlignment="Left" Margin="161,0,0,0" Width="350">
+        <GroupBox x:Name="FictionGroup" Header="Fiction" Background="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="161,0,0,0" Width="350">
             <Grid Margin="0,0,-12,-12">
                 <Label Content="Type (original, fanfiction)" Height="28" Margin="10,9,196,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="InpFictType" Height="22" Margin="10,37,206,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
@@ -60,7 +60,7 @@
                 </GroupBox>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="HistoricalGroup" Header="Historical" Visibility="Hidden" Background="White" HorizontalAlignment="Left" Margin="161,0,0,0" Width="175">
+        <GroupBox x:Name="HistoricalGroup" Header="Historical" Background="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="161,0,0,0" Width="175">
             <Grid Margin="0,0,0,-12">
                 <Label Content="Period" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="98"/>
                 <TextBox x:Name="InpHistPeriod" HorizontalAlignment="Left" Height="22" Margin="10,38,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
