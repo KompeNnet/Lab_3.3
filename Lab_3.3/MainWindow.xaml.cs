@@ -22,30 +22,91 @@ namespace Lab_3._3
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<int, GroupBox> groupsDictionary;
+        private List<GroupBox> groupsMainList;
+        private List<GroupBox> groupsHistList;
+        private List<GroupBox> groupsFictList;
+        private List<GroupBox> groupsFictFantList;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.groupsDictionary = new Dictionary<int, GroupBox>
+            LoadingLists();
+        }
+
+        public void LoadingLists()
+        {
+            groupsMainList = new List<GroupBox>
             {
-                { 0, EncycloGroup },
-                { 1, FictionGroup },
-                { 2, HistoricalGroup }
+                EncycloGroup,
+                FictionGroup,
+                HistoricalGroup
+            };
+            groupsHistList = new List<GroupBox>
+            {
+                HistArtGroup,
+                HistBiographyGroup
+            };
+            groupsFictList = new List<GroupBox>
+            {
+                FictFantasticTalesGroup,
+                FictTravellingGroup
+            };
+            groupsFictFantList = new List<GroupBox>
+            {
+                FictFantFairyTalesGroup,
+                FictFantScienceFictionGroup
             };
         }
 
         private void ChooseGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ChooseGenre.SelectedIndex;
-            if (index != -1)
+            if (ChooseGenre.SelectedIndex != -1)
             {
-                for (int i = 0; i < groupsDictionary.Count; i++)
+                for (int i = 0; i < groupsMainList.Count; i++)
                 {
-                    if (index != i)
-                        groupsDictionary[i].Visibility = Visibility.Hidden;
+                    if (ChooseGenre.SelectedIndex != i)
+                        groupsMainList[i].Visibility = Visibility.Hidden;
                 }
-                groupsDictionary[index].Visibility = Visibility.Visible;    
+                groupsMainList[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;    
+            }
+        }
+
+        private void ChooseHistType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ChooseHistType.SelectedIndex != -1)
+            {
+                for (int i = 0; i < groupsHistList.Count; i++)
+                {
+                    if (ChooseHistType.SelectedIndex != i)
+                        groupsHistList[i].Visibility = Visibility.Hidden;
+                }
+                groupsHistList[ChooseHistType.SelectedIndex].Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ChooseFictType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ChooseFictType.SelectedIndex != -1)
+            {
+                for (int i = 0; i < groupsFictList.Count; i++)
+                {
+                    if (ChooseFictType.SelectedIndex != i)
+                        groupsFictList[i].Visibility = Visibility.Hidden;
+                }
+                groupsFictList[ChooseFictType.SelectedIndex].Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ChooseFictFantType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ChooseFictFantType.SelectedIndex != -1)
+            {
+                for (int i = 0; i < groupsFictFantList.Count; i++)
+                {
+                    if (ChooseFictFantType.SelectedIndex != i)
+                        groupsFictFantList[i].Visibility = Visibility.Hidden;
+                }
+                groupsFictFantList[ChooseFictFantType.SelectedIndex].Visibility = Visibility.Visible;
             }
         }
     }

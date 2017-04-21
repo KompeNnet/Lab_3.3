@@ -11,9 +11,9 @@ namespace Lab_3._3.Books.Fictions
     class Travelling : Fiction
     {
         [DataMember]
-        public string[] Countries { get; set; }
+        public string Countries { get; set; }
         
-        public Travelling(string author, string name, string office, string[] countries) : base(author, name, office, "Original", "16+")
+        public Travelling(string author, string name, string office, string countries) : base(author, name, office, "Original", "16+")
         {
             Countries = countries;
         }
