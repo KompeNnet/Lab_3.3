@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Serialize\Descriptor.cs" />
+    <Compile Include="Serialize\Serializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,8 +65,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Books\Historical\Art.cs" />
-    <Compile Include="Books\Historical\Biography.cs" />
+    <Compile Include="Books\History\Art.cs" />
+    <Compile Include="Books\History\Biography.cs" />
     <Compile Include="Books\Book.cs" />
     <Compile Include="Books\Encyclopedia.cs" />
     <Compile Include="Books\Fictions\FairyTales.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="Books\Fictions\FantasticTales.cs" />
     <Compile Include="Books\Fictions\ScienceFiction.cs" />
     <Compile Include="Books\Fictions\Travelling.cs" />
-    <Compile Include="Factory.cs" />
+    <Compile Include="Serialize\Factory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
