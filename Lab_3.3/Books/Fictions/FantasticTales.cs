@@ -12,10 +12,5 @@ namespace Lab_3._3.Books.Fictions
     {
         [DataMember]
         public string CoAuthors { get; set; }
-
-        public FantasticTales(string author, string name, string office, string age, string coAuthors) : base(author, name, office, "Fiction", age)
-        {
-            CoAuthors = coAuthors;
-        }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using Lab_3._3.Books;
 
 namespace Lab_3._3
 {
@@ -26,6 +27,9 @@ namespace Lab_3._3
         private List<GroupBox> groupsHistList;
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
+        private List<Book> bookList;
+        private string[] cbbs;
+        Factory bookOffice = new Factory();
 
         public MainWindow()
         {
@@ -58,8 +62,59 @@ namespace Lab_3._3
             };
         }
 
+        private void LoadBooks()
+        {
+            bookListForm.Items.Clear();
+            foreach (var book in bookList)
+            {
+                bookListForm.Items.Add(book);
+            }
+        }
+
+        private void DefaultCBBS(string state)
+        {
+            switch (state)
+            {
+                case "genr":
+                    ChooseFictFantType.SelectedIndex = -1;
+                    ChooseFictType.SelectedIndex = -1;
+                    ChooseHistType.SelectedIndex = -1;
+                    break;
+                case "fict":
+                    ChooseFictFantType.SelectedIndex = -1;
+                    break;
+            }
+        }
+
+        private bool Loadcbbs()
+        {
+            try
+            {
+                cbbs[0] = ChooseGenre.SelectedItem.ToString();
+                if (ChooseGenre.SelectedIndex != 1)
+                {
+                    try
+                    {
+                        cbbs[1] = ChooseHistType.SelectedItem.ToString();
+                    }
+                    catch
+                    {
+                        cbbs[2] = ChooseFictType.SelectedItem.ToString();
+                        cbbs[3] = ChooseFictFantType.SelectedItem.ToString();
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Incorrect info. Somewhere. Here ._.", "Smth goes wrong", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
         private void ChooseGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DefaultCBBS("genr");
             if (ChooseGenre.SelectedIndex != -1)
             {
                 for (int i = 0; i < groupsMainList.Count; i++)
@@ -86,6 +141,7 @@ namespace Lab_3._3
 
         private void ChooseFictType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DefaultCBBS("fict");
             if (ChooseFictType.SelectedIndex != -1)
             {
                 for (int i = 0; i < groupsFictList.Count; i++)
@@ -108,6 +164,36 @@ namespace Lab_3._3
                 }
                 groupsFictFantList[ChooseFictFantType.SelectedIndex].Visibility = Visibility.Visible;
             }
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (Loadcbbs())
+            {
+                Book curr = bookOffice.Create(cbbs);
+                LoadBooks();
+            }
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            bookList.Remove((Book)bookListForm.SelectedItems);
+            LoadBooks();
+        }
+
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void BtnSerialize_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void BtnDeerialize_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
         }
     }
 }

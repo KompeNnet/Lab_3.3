@@ -15,11 +15,5 @@ namespace Lab_3._3.Books.History
 
         [DataMember]
         public string Years { get; set; }
-
-        public Biography(string author, string name, string office, string period, string person, string years) : base(author, name, office, period)
-        {
-            Person = person;
-            Years = years;
-        }
     }
 }

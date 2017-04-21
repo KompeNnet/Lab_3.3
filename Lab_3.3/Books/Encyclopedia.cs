@@ -12,10 +12,5 @@ namespace Lab_3._3.Books
     {
         [DataMember]
         public string Subject { get; set; }
-
-        public Encyclopedia(string author, string name, string office, string subject) : base(author, name, office, "Encyclopedia")
-        {
-            Subject = subject;
-        }
     }
 }

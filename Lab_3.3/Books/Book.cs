@@ -11,23 +11,15 @@ namespace Lab_3._3.Books
     class Book
     {
         [DataMember]
-        public string Author { get; set; }
+        string Author { get; set; }
 
         [DataMember]
-        public string Name { get; set; }
+        string Name { get; set; }
 
         [DataMember]
-        public string PublishingOffice { get; set; }
+        string PublishingOffice { get; set; }
 
         [DataMember]
-        public string Genre { get; set; }
-
-        public Book(string author, string name, string office, string genre)
-        {
-            Author = author;
-            Name = name;
-            PublishingOffice = office;
-            Genre = genre;
-        }
+        string Genre { get; set; }
     }
 }

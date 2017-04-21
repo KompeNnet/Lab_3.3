@@ -12,10 +12,5 @@ namespace Lab_3._3.Books.History
     {
         [DataMember]
         public string ArtForm { get; set; }
-
-        public Art(string author, string name, string office, string period, string artForm) : base(author, name, office, period)
-        {
-            ArtForm = artForm;
-        }
     }
 }
