@@ -11,9 +11,18 @@ namespace Lab_3._3.Serialize
 {
     class Factory
     {
-        public Book Create(string[] needed)
+        public Book Create(string needed)
         {
-            if (needed[0] == "Historical")
+            switch (needed)
+            {
+                case "Art": return new Art();
+                case "Biography": return new Biography();
+                case "Encyclopedia": return new Encyclopedia();
+                case "FairyTales": return new FairyTales();
+                case "Science Fiction": return new ScienceFiction();
+                case "Travelling": return new Travelling();
+            }
+            /*if (needed[0] == "Historical")
                 switch (needed[1])
                 {
                     case "Art": return new Art();
@@ -26,7 +35,7 @@ namespace Lab_3._3.Serialize
                         if (needed[3] == "FairyTales") return new FairyTales();
                         return new ScienceFiction();
                     case "Travelling": return new Travelling();
-                }
+                }*/
             return new Encyclopedia();
         }
     }

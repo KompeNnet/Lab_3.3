@@ -29,7 +29,7 @@ namespace Lab_3._3
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
         private List<Book> bookList;
-        private string[] cbbs;
+        private string cbbs;
         Factory bookOffice = new Factory();
 
         public MainWindow()
@@ -91,24 +91,39 @@ namespace Lab_3._3
         {
             try
             {
-                cbbs[0] = ChooseGenre.SelectedItem.ToString();
-                if (ChooseGenre.SelectedIndex != 1)
+                cbbs = ChooseGenre.SelectedItem.ToString();
+                cbbs = ChooseGenre.Text;
+                if (ChooseGenre.SelectedIndex != 0)
                 {
                     try
                     {
-                        cbbs[1] = ChooseHistType.SelectedItem.ToString();
+                        cbbs = ChooseHistType.SelectedItem.ToString();
+                        cbbs = ChooseHistType.Text;
                     }
                     catch
                     {
-                        cbbs[2] = ChooseFictType.SelectedItem.ToString();
-                        cbbs[3] = ChooseFictFantType.SelectedItem.ToString();
+                        try
+                        {
+                            cbbs = ChooseFictType.SelectedItem.ToString();
+                            cbbs = ChooseFictType.Text;
+                            if (ChooseFictType.Text == "Fantastic tales")
+                            {
+                                try
+                                {
+                                    cbbs = ChooseFictFantType.SelectedItem.ToString();
+                                    cbbs = ChooseFictFantType.Text;
+                                } catch { return false; }
+                                return true;
+                            }
+                            return true;
+                        }
+                        catch { return false; }
                     }
                 }
                 return true;
             }
             catch
             {
-                MessageBox.Show("Incorrect info. Somewhere. Here ._.", "Smth goes wrong", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -172,8 +187,9 @@ namespace Lab_3._3
             if (Loadcbbs())
             {
                 Book curr = bookOffice.Create(cbbs);
-                LoadBooks();
+            //    LoadBooks();
             }
+            else MessageBox.Show("Incorrect info. Somewhere. Here ._.", "Smth goes wrong", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
