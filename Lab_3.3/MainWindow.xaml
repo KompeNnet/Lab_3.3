@@ -113,20 +113,10 @@
                 <ListView x:Name="bookListForm" HorizontalAlignment="Left" Height="277" Margin="10,60,0,0" VerticalAlignment="Top" Width="189">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="22" Header="№">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding id}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Width="167" Header="Object">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding object}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            <GridViewColumn Header="№" Width="18" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Name" Width="84" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Author" Width="80" DisplayMemberBinding="{Binding Author}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

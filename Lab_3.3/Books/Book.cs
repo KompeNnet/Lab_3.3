@@ -8,18 +8,18 @@ using System.Runtime.Serialization;
 namespace Lab_3._3.Books
 {
     [DataContract]
-    class Book
+    public class Book
     {
         [DataMember]
-        string Author { get; set; }
+        public string Author { get; set; }
 
         [DataMember]
-        string Name { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        string PublishingOffice { get; set; }
+        public string PublishingOffice { get; set; }
 
         [DataMember]
-        string Genre { get; set; }
+        public string Genre { get; set; }
     }
 }

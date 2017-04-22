@@ -28,7 +28,6 @@ namespace Lab_3._3
         private List<GroupBox> groupsHistList;
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
-        private List<Book> bookList;
         private string cbbs;
         Factory bookOffice = new Factory();
 
@@ -61,30 +60,6 @@ namespace Lab_3._3
                 FictFantFairyTalesGroup,
                 FictFantScienceFictionGroup
             };
-        }
-
-        private void LoadBooks()
-        {
-            bookListForm.Items.Clear();
-            foreach (var book in bookList)
-            {
-                bookListForm.Items.Add(book);
-            }
-        }
-
-        private void DefaultCBBS(string state)
-        {
-            switch (state)
-            {
-                case "genr":
-                    ChooseFictFantType.SelectedIndex = -1;
-                    ChooseFictType.SelectedIndex = -1;
-                    ChooseHistType.SelectedIndex = -1;
-                    break;
-                case "fict":
-                    ChooseFictFantType.SelectedIndex = -1;
-                    break;
-            }
         }
 
         private bool Loadcbbs()
@@ -128,6 +103,50 @@ namespace Lab_3._3
             }
         }
 
+        private void UploadInfo(Book book)
+        {
+            //TODO
+        }
+
+        private void DefaultCBBS(string state)
+        {
+            switch (state)
+            {
+                case "genr":
+                    ChooseFictFantType.SelectedIndex = -1;
+                    ChooseFictType.SelectedIndex = -1;
+                    ChooseHistType.SelectedIndex = -1;
+                    break;
+                case "fict":
+                    ChooseFictFantType.SelectedIndex = -1;
+                    break;
+            }
+        }
+
+        private void HideGroups(string state)
+        {
+            switch (state)
+            {
+                case "FictFantType":
+                    for (int i = 0; i < groupsFictFantList.Count; i++)
+                    {
+                        groupsFictFantList[i].Visibility = Visibility.Hidden;
+                    }
+                    break;
+                case "genre":
+                    HideGroups("FictFantType");
+                    for (int i = 0; i < groupsFictList.Count; i++)
+                    {
+                        groupsFictList[i].Visibility = Visibility.Hidden;
+                    }
+                    for (int i = 0; i < groupsHistList.Count; i++)
+                    {
+                        groupsHistList[i].Visibility = Visibility.Hidden;
+                    }
+                    break;
+            }
+        }
+
         private void ChooseGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DefaultCBBS("genr");
@@ -138,6 +157,7 @@ namespace Lab_3._3
                     if (ChooseGenre.SelectedIndex != i)
                         groupsMainList[i].Visibility = Visibility.Hidden;
                 }
+                HideGroups("genre");
                 groupsMainList[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;    
             }
         }
@@ -165,6 +185,7 @@ namespace Lab_3._3
                     if (ChooseFictType.SelectedIndex != i)
                         groupsFictList[i].Visibility = Visibility.Hidden;
                 }
+                HideGroups("FictFantType");
                 groupsFictList[ChooseFictType.SelectedIndex].Visibility = Visibility.Visible;
             }
         }
@@ -187,15 +208,21 @@ namespace Lab_3._3
             if (Loadcbbs())
             {
                 Book curr = bookOffice.Create(cbbs);
-            //    LoadBooks();
+                
+                if (curr != null)
+                {
+                    bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Name = curr.Name, Author = curr.Author, Data = curr });
+                }
             }
             else MessageBox.Show("Incorrect info. Somewhere. Here ._.", "Smth goes wrong", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        }           //LOAD DATA
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
-            bookList.Remove((Book)bookListForm.SelectedItems);
-            LoadBooks();
+            while (bookListForm.SelectedItems.Count > 0)
+            {
+                bookListForm.Items.Remove(bookListForm.SelectedItems[0]);
+            }
         }
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
