@@ -7,13 +7,9 @@ using System.Runtime.Serialization;
 
 namespace Lab_3._3.Books
 {
-    [DataContract]
     class Fiction : Book
     {
-        [DataMember]
         public string Type { get; set; }
-
-        [DataMember]
         public string Age { get; set; }
     }
 }

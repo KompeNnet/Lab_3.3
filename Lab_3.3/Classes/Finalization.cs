@@ -9,11 +9,13 @@ namespace Lab_3._3.Classes
     public class Finalization
     {
         public Action DataUpdate;
+        public Action DataLoad;
         public bool isFinal;
 
-        public Finalization(Action DataUpdate, bool isFinal)
+        public Finalization(Action DataUpdate, Action DataLoad, bool isFinal)
         {
             this.DataUpdate = DataUpdate;
+            this.DataLoad = DataLoad;
             this.isFinal = isFinal;
         }
     }

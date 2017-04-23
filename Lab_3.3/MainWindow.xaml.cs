@@ -31,9 +31,10 @@ namespace Lab_3._3
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
         Dictionary<string, Finalization> resultDictionary;
-        dynamic book;
+        dynamic book, tempBook;
         string requestedValue;
         public Action ActionCreation { get; set; }
+        public Action ActionLoad { get; set; }
 
         public MainWindow()
         {
@@ -66,16 +67,16 @@ namespace Lab_3._3
             };
             resultDictionary = new Dictionary<string, Finalization>
             {
-                { "Book", new Finalization(new Action(CreateBook), false) },
-                { "Encyclopedia", new Finalization(new Action(CreateEncyclopedia), true) },
-                { "Historical", new Finalization(new Action(CreateHistorical), false) },
-                { "Art", new Finalization(new Action(CreateArt), true) },
-                { "Biography", new Finalization(new Action(CreateBiography), true) },
-                { "Fiction", new Finalization(new Action(CreateFiction), false) },
-                { "Travelling", new Finalization(new Action(CreateTravelling), true) },
-                { "FantasticTales", new Finalization(new Action(CreateFantasticTales), false) },
-                { "ScienceFiction", new Finalization(new Action(CreateScienceFiction), true) },
-                { "FairyTales", new Finalization(new Action(CreateFairyTales), true) }
+                { "Book", new Finalization(new Action(CreateBook), new Action(LoadBook), false) },
+                { "Encyclopedia", new Finalization(new Action(CreateEncyclopedia), new Action(LoadEncyclopedia), true) },
+                { "Historical", new Finalization(new Action(CreateHistorical), new Action(LoadHistorical), false) },
+                { "Art", new Finalization(new Action(CreateArt), new Action(LoadArt), true) },
+                { "Biography", new Finalization(new Action(CreateBiography), new Action(LoadBiography), true) },
+                { "Fiction", new Finalization(new Action(CreateFiction), new Action(LoadFiction), false) },
+                { "Travelling", new Finalization(new Action(CreateTravelling), new Action(LoadTravelling), true) },
+                { "FantasticTales", new Finalization(new Action(CreateFantasticTales), new Action(LoadFantasticTales), false) },
+                { "ScienceFiction", new Finalization(new Action(CreateScienceFiction), new Action(LoadScienceFiction), true) },
+                { "FairyTales", new Finalization(new Action(CreateFairyTales), new Action(LoadFairyTales), true) }
             };
         }
 
@@ -83,6 +84,98 @@ namespace Lab_3._3
         {
             return Serializer.Deserialize<T>(Serializer.Serialize(book));
         }
+
+        //LOADING
+
+        private void PreLoadClean()
+        {
+
+            //TODO
+        }
+
+        private void LoadBook()
+        {
+            Book curr = CastType<Book>(tempBook);
+            InpAuthor.Text = curr.Author;
+            InpName.Text = curr.Name;
+            InpPublishing.Text = curr.PublishingOffice;
+        }
+
+        private void LoadEncyclopedia()
+        {
+            LoadBook();
+            Encyclopedia curr = CastType<Encyclopedia>(tempBook);
+            ChooseGenre.SelectedIndex = 0;
+            curr.Subject = InpEnSubject.Text;
+        }
+
+        private void LoadHistorical()
+        {
+            LoadBook();
+            Historical curr = CastType<Historical>(tempBook);
+            InpHistPeriod.Text = curr.Period;
+            ChooseGenre.SelectedIndex = 2;
+        }
+
+        private void LoadArt()
+        {
+            LoadHistorical();
+            Art curr = CastType<Art>(tempBook);
+            InpHistArtForm.Text = curr.ArtForm;
+            ChooseHistType.SelectedIndex = 0;
+        }
+
+        private void LoadBiography()
+        {
+            LoadHistorical();
+            Biography curr = CastType<Biography>(tempBook);
+            InpHistBioPerson.Text = curr.Person;
+            InpHistBioYears.Text = curr.Years;
+            ChooseHistType.SelectedIndex = 1;
+        }
+
+        private void LoadFiction()
+        {
+            LoadBook();
+            Fiction curr = CastType<Fiction>(tempBook);
+            InpFictAge.Text = curr.Age;
+            InpFictType.Text = curr.Type;
+            ChooseGenre.SelectedIndex = 1;
+        }
+
+        private void LoadTravelling()
+        {
+            LoadFiction();
+            Travelling curr = CastType<Travelling>(tempBook);
+            InpFictTravCountries.Text = curr.Countries;
+            ChooseFictType.SelectedIndex = 1;
+        }
+
+        private void LoadFantasticTales()
+        {
+            LoadFiction();
+            FantasticTales curr = CastType<FantasticTales>(tempBook);
+            InpFictFantCoWorkers.Text = curr.CoAuthors;
+            ChooseFictType.SelectedIndex = 0;
+        }
+
+        private void LoadFairyTales()
+        {
+            LoadFantasticTales();
+            FairyTales curr = CastType<FairyTales>(tempBook);
+            CheckFictFantFairyIsIllustrated.IsChecked = curr.IsIllustrated;
+            ChooseFictFantType.SelectedIndex = 0;
+        }
+
+        private void LoadScienceFiction()
+        {
+            LoadFantasticTales();
+            ScienceFiction curr = CastType<ScienceFiction>(tempBook);
+            CheckFictFantFairyIsEarth.IsChecked = curr.IsEarth;
+            ChooseFictFantType.SelectedIndex = 1;
+        }
+
+        //CREATING
 
         private void CreateBook()
         {
@@ -292,14 +385,14 @@ namespace Lab_3._3
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             ActionCreation();
-            bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Type = requestedValue, Name = book.Name, Author = book.Author, Data = book });
+            BookListForm.Items.Add(new ItemInList { Id = BookListForm.Items.Count + 1, Type = requestedValue, Name = book.Name, Author = book.Author, Data = book });
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
-            while (bookListForm.SelectedItems.Count > 0)
+            while (BookListForm.SelectedItems.Count > 0)
             {
-                bookListForm.Items.Remove(bookListForm.SelectedItems[0]);
+                BookListForm.Items.Remove(BookListForm.SelectedItems[0]);
             }
         }
 
@@ -313,9 +406,29 @@ namespace Lab_3._3
             //TODO
         }
 
-        private void BtnDeerialize_Click(object sender, RoutedEventArgs e)
+        private void BtnDeserialize_Click(object sender, RoutedEventArgs e)
         {
             //TODO
+        }
+
+        private void BookListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (BookListForm.SelectedIndex != -1)
+            {
+                BtnRemove.IsEnabled = true;
+                BtnSerialize.IsEnabled = true;
+                BtnSubmit.IsEnabled = true;
+                ItemInList elem = (ItemInList)BookListForm.Items.GetItemAt(BookListForm.SelectedIndex);
+                tempBook = elem.Data;
+                resultDictionary[elem.Type].DataLoad();
+            }
+            else
+            {
+                BtnRemove.IsEnabled = false;
+                BtnSerialize.IsEnabled = false;
+                BtnSubmit.IsEnabled = false;
+                tempBook = null;
+            }
         }
     }
 }

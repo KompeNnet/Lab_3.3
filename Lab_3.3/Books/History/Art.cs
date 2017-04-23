@@ -7,10 +7,8 @@ using System.Runtime.Serialization;
 
 namespace Lab_3._3.Books.History
 {
-    [DataContract]
     class Art : Historical
     {
-        [DataMember]
         public string ArtForm { get; set; }
     }
 }

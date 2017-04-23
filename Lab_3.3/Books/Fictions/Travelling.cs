@@ -7,10 +7,8 @@ using System.Runtime.Serialization;
 
 namespace Lab_3._3.Books.Fictions
 {
-    [DataContract]
     class Travelling : Fiction
     {
-        [DataMember]
         public string Countries { get; set; }
     }
 }

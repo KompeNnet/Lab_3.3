@@ -109,8 +109,8 @@
                 <Button x:Name="BtnRemove" Content="Remove" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="75,10,0,0" Click="BtnRemove_Click"/>
                 <Button x:Name="BtnSubmit" Content="Submit" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="140,10,0,0" Click="BtnSubmit_Click"/>
                 <Button x:Name="BtnSerialize" Content="Serialize" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="205,10,0,0" Click="BtnSerialize_Click"/>
-                <Button x:Name="BtnDeserialize" Content="Deserialize" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="270,10,-22,0" Click="BtnDeerialize_Click"/>
-                <ListView x:Name="bookListForm" Height="277" Margin="10,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320">
+                <Button x:Name="BtnDeserialize" Content="Deserialize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="270,10,-22,0" Click="BtnDeserialize_Click"/>
+                <ListView x:Name="BookListForm" Height="292" Margin="10,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" SelectionChanged="BookListForm_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="№" Width="21" DisplayMemberBinding="{Binding Id}"/>

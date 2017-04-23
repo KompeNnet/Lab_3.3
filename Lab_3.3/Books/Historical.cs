@@ -7,10 +7,8 @@ using System.Runtime.Serialization;
 
 namespace Lab_3._3.Books
 {
-    [DataContract]
     class Historical : Book
     {
-        [DataMember]
         public string Period { get; set; }
     }
 }
