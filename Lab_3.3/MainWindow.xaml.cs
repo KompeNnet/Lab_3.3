@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using Lab_3._3.Books;
+using Lab_3._3.Books.Fictions;
+using Lab_3._3.Books.History;
 using Lab_3._3.Serialize;
 
 namespace Lab_3._3
@@ -28,8 +30,9 @@ namespace Lab_3._3
         private List<GroupBox> groupsHistList;
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
-        private string cbbs;
-        Factory bookOffice = new Factory();
+        Dictionary<string, Action> resultDictionary;
+        dynamic book;
+        public Action ActionCreation { get; set; }
 
         public MainWindow()
         {
@@ -60,47 +63,98 @@ namespace Lab_3._3
                 FictFantFairyTalesGroup,
                 FictFantScienceFictionGroup
             };
+            resultDictionary = new Dictionary<string, Action>
+            {
+                { "Book", new Action(CreateBook) },
+                { "Encyclopedia", new Action(CreateEncyclopedia) },
+                { "Historical", new Action(CreateHistorical) },
+                { "Art", new Action(CreateArt) },
+                { "Biography", new Action(CreateBiography) },
+                { "Fiction", new Action(CreateFiction) },
+                { "Travelling", new Action(CreateTravelling) },
+                { "Fantastic tales", new Action(CreateFantasticTales) },
+                { "Science Fiction", new Action(CreateScienceFiction) },
+                { "FairyTales", new Action(CreateFairyTales) }
+            };
         }
 
-        private bool Loadcbbs()
+        public void CreateBook()
         {
-            try
+            Book curr = new Book()
             {
-                cbbs = ChooseGenre.SelectedItem.ToString();
-                cbbs = ChooseGenre.Text;
-                if (ChooseGenre.SelectedIndex != 0)
-                {
-                    try
-                    {
-                        cbbs = ChooseHistType.SelectedItem.ToString();
-                        cbbs = ChooseHistType.Text;
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            cbbs = ChooseFictType.SelectedItem.ToString();
-                            cbbs = ChooseFictType.Text;
-                            if (ChooseFictType.Text == "Fantastic tales")
-                            {
-                                try
-                                {
-                                    cbbs = ChooseFictFantType.SelectedItem.ToString();
-                                    cbbs = ChooseFictFantType.Text;
-                                } catch { return false; }
-                                return true;
-                            }
-                            return true;
-                        }
-                        catch { return false; }
-                    }
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                Author = InpAuthor.Text,
+                Name = InpName.Text,
+                PublishingOffice = InpPublishing.Text
+            };
+            book = curr;
+        }
+
+        public void CreateEncyclopedia()
+        {
+            Encyclopedia curr = (Encyclopedia)book;
+            curr.Genre = "Encyclopedia";
+            curr.Subject = InpEnSubject.Text;
+            book = curr;
+        }
+
+        public void CreateHistorical()
+        {
+            Historical curr = (Historical)book;
+            curr.Period = InpHistPeriod.Text;
+            curr.Genre = "Historical";
+            book = curr;
+        }
+
+        public void CreateArt()
+        {
+            Art curr = (Art)book;
+            curr.ArtForm = InpHistArtForm.Text;
+            book = curr;
+        }
+
+        public void CreateBiography()
+        {
+            Biography curr = (Biography)book;
+            curr.Person = InpHistBioPerson.Text;
+            curr.Years = InpHistBioYears.Text;
+            book = curr;
+        }
+
+        public void CreateFiction()
+        {
+            Fiction curr = (Fiction)book;
+            curr.Age = InpFictAge.Text;
+            curr.Type = InpFictType.Text;
+            curr.Genre = "Fiction";
+            book = curr;
+        }
+
+        public void CreateTravelling()
+        {
+            Travelling curr = (Travelling)book;
+            curr.Countries = InpFictTravCountries.Text;
+            book = curr;
+        }
+
+        public void CreateFantasticTales()
+        {
+            FantasticTales curr = (FantasticTales)book;
+            curr.CoAuthors = InpFictFantCoWorkers.Text;
+            book = curr;
+        }
+
+        public void CreateFairyTales()
+        {
+            FairyTales curr = (FairyTales)book;
+            curr.IsIllustrated = CheckFictFantFairyIsIllustrated.IsChecked.Value;
+            book = curr;
+        }
+
+        public void CreateScienceFiction()
+        {
+            ScienceFiction curr = (ScienceFiction)book;
+            curr.IsEarth = CheckFictFantFairyIsEarth.IsChecked.Value;
+            book = curr;
         }
 
         private void UploadInfo(Book book)
@@ -147,6 +201,11 @@ namespace Lab_3._3
             }
         }
 
+        private string GetString(ComboBox cbb)
+        {
+            return ((ListBoxItem)cbb.Items[cbb.SelectedIndex]).Content.ToString();
+        }
+
         private void ChooseGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DefaultCBBS("genr");
@@ -158,7 +217,10 @@ namespace Lab_3._3
                         groupsMainList[i].Visibility = Visibility.Hidden;
                 }
                 HideGroups("genre");
-                groupsMainList[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;    
+                groupsMainList[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;
+                ActionCreation = new Action(CreateBook);
+                //ActionCreation += resultDictionary[ChooseGenre.Text];
+                ActionCreation += resultDictionary[GetString(ChooseGenre)];
             }
         }
 
@@ -172,6 +234,9 @@ namespace Lab_3._3
                         groupsHistList[i].Visibility = Visibility.Hidden;
                 }
                 groupsHistList[ChooseHistType.SelectedIndex].Visibility = Visibility.Visible;
+                ActionCreation = new Action(CreateBook);
+                ActionCreation += resultDictionary[GetString(ChooseGenre)];
+                ActionCreation += resultDictionary[GetString(ChooseHistType)];
             }
         }
 
@@ -187,6 +252,9 @@ namespace Lab_3._3
                 }
                 HideGroups("FictFantType");
                 groupsFictList[ChooseFictType.SelectedIndex].Visibility = Visibility.Visible;
+                ActionCreation = new Action(CreateBook);
+                ActionCreation += resultDictionary[GetString(ChooseGenre)];
+                ActionCreation += resultDictionary[GetString(ChooseFictType)];
             }
         }
 
@@ -200,22 +268,17 @@ namespace Lab_3._3
                         groupsFictFantList[i].Visibility = Visibility.Hidden;
                 }
                 groupsFictFantList[ChooseFictFantType.SelectedIndex].Visibility = Visibility.Visible;
+                ActionCreation = new Action(CreateBook);
+                ActionCreation += resultDictionary[GetString(ChooseGenre)];
+                ActionCreation += resultDictionary[GetString(ChooseFictType)];
+                ActionCreation += resultDictionary[GetString(ChooseFictFantType)];
             }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (Loadcbbs())
-            {
-                Book curr = bookOffice.Create(cbbs);
-                
-                if (curr != null)
-                {
-                    bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Name = curr.Name, Author = curr.Author, Data = curr });
-                }
-            }
-            else MessageBox.Show("Incorrect info. Somewhere. Here ._.", "Smth goes wrong", MessageBoxButton.OK, MessageBoxImage.Error);
-        }           //LOAD DATA
+            ActionCreation();
+        }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {

@@ -8,6 +8,6 @@ namespace Lab_3._3.Serialize
 {
     class Descriptor
     {
-
+        //TODO
     }
 }

@@ -76,7 +76,6 @@
     <Compile Include="Books\Fictions\FantasticTales.cs" />
     <Compile Include="Books\Fictions\ScienceFiction.cs" />
     <Compile Include="Books\Fictions\Travelling.cs" />
-    <Compile Include="Serialize\Factory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
