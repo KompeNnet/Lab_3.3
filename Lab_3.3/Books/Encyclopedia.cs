@@ -12,10 +12,5 @@ namespace Lab_3._3.Books
     {
         [DataMember]
         public string Subject { get; set; }
-
-        public override string ToString()
-        {
-            return "Encyclopedia: " + Name;
-        }
     }
 }

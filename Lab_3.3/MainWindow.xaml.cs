@@ -17,7 +17,7 @@ using System.Runtime.Serialization.Json;
 using Lab_3._3.Books;
 using Lab_3._3.Books.Fictions;
 using Lab_3._3.Books.History;
-using Lab_3._3.Serialize;
+using Lab_3._3.Classes;
 
 namespace Lab_3._3
 {
@@ -30,8 +30,9 @@ namespace Lab_3._3
         private List<GroupBox> groupsHistList;
         private List<GroupBox> groupsFictList;
         private List<GroupBox> groupsFictFantList;
-        Dictionary<string, Action> resultDictionary;
+        Dictionary<string, Finalization> resultDictionary;
         dynamic book;
+        string requestedValue;
         public Action ActionCreation { get; set; }
 
         public MainWindow()
@@ -40,7 +41,7 @@ namespace Lab_3._3
             LoadingLists();
         }
 
-        public void LoadingLists()
+        private void LoadingLists()
         {
             groupsMainList = new List<GroupBox>
             {
@@ -63,22 +64,27 @@ namespace Lab_3._3
                 FictFantFairyTalesGroup,
                 FictFantScienceFictionGroup
             };
-            resultDictionary = new Dictionary<string, Action>
+            resultDictionary = new Dictionary<string, Finalization>
             {
-                { "Book", new Action(CreateBook) },
-                { "Encyclopedia", new Action(CreateEncyclopedia) },
-                { "Historical", new Action(CreateHistorical) },
-                { "Art", new Action(CreateArt) },
-                { "Biography", new Action(CreateBiography) },
-                { "Fiction", new Action(CreateFiction) },
-                { "Travelling", new Action(CreateTravelling) },
-                { "Fantastic tales", new Action(CreateFantasticTales) },
-                { "Science Fiction", new Action(CreateScienceFiction) },
-                { "FairyTales", new Action(CreateFairyTales) }
+                { "Book", new Finalization(new Action(CreateBook), false) },
+                { "Encyclopedia", new Finalization(new Action(CreateEncyclopedia), true) },
+                { "Historical", new Finalization(new Action(CreateHistorical), false) },
+                { "Art", new Finalization(new Action(CreateArt), true) },
+                { "Biography", new Finalization(new Action(CreateBiography), true) },
+                { "Fiction", new Finalization(new Action(CreateFiction), false) },
+                { "Travelling", new Finalization(new Action(CreateTravelling), true) },
+                { "FantasticTales", new Finalization(new Action(CreateFantasticTales), false) },
+                { "ScienceFiction", new Finalization(new Action(CreateScienceFiction), true) },
+                { "FairyTales", new Finalization(new Action(CreateFairyTales), true) }
             };
         }
 
-        public void CreateBook()
+        private dynamic CastType<T>(dynamic book)
+        {
+            return Serializer.Deserialize<T>(Serializer.Serialize(book));
+        }
+
+        private void CreateBook()
         {
             Book curr = new Book()
             {
@@ -89,70 +95,70 @@ namespace Lab_3._3
             book = curr;
         }
 
-        public void CreateEncyclopedia()
+        private void CreateEncyclopedia()
         {
-            Encyclopedia curr = (Encyclopedia)book;
+            Encyclopedia curr = CastType<Encyclopedia>(book);
             curr.Genre = "Encyclopedia";
             curr.Subject = InpEnSubject.Text;
             book = curr;
         }
 
-        public void CreateHistorical()
+        private void CreateHistorical()
         {
-            Historical curr = (Historical)book;
+            Historical curr = CastType<Historical>(book);
             curr.Period = InpHistPeriod.Text;
             curr.Genre = "Historical";
             book = curr;
         }
 
-        public void CreateArt()
+        private void CreateArt()
         {
-            Art curr = (Art)book;
+            Art curr = CastType<Art>(book);
             curr.ArtForm = InpHistArtForm.Text;
             book = curr;
         }
 
-        public void CreateBiography()
+        private void CreateBiography()
         {
-            Biography curr = (Biography)book;
+            Biography curr = CastType<Biography>(book);
             curr.Person = InpHistBioPerson.Text;
             curr.Years = InpHistBioYears.Text;
             book = curr;
         }
 
-        public void CreateFiction()
+        private void CreateFiction()
         {
-            Fiction curr = (Fiction)book;
+            Fiction curr = CastType<Fiction>(book);
             curr.Age = InpFictAge.Text;
             curr.Type = InpFictType.Text;
             curr.Genre = "Fiction";
             book = curr;
         }
 
-        public void CreateTravelling()
+        private void CreateTravelling()
         {
-            Travelling curr = (Travelling)book;
+            Travelling curr = CastType<Travelling>(book);
             curr.Countries = InpFictTravCountries.Text;
             book = curr;
         }
 
-        public void CreateFantasticTales()
+        private void CreateFantasticTales()
         {
-            FantasticTales curr = (FantasticTales)book;
+            FantasticTales curr = CastType<FantasticTales>(book);
             curr.CoAuthors = InpFictFantCoWorkers.Text;
             book = curr;
         }
 
-        public void CreateFairyTales()
+        private void CreateFairyTales()
         {
-            FairyTales curr = (FairyTales)book;
+            FairyTales curr = CastType<FairyTales>(book);
             curr.IsIllustrated = CheckFictFantFairyIsIllustrated.IsChecked.Value;
             book = curr;
         }
 
-        public void CreateScienceFiction()
+        private void CreateScienceFiction()
         {
-            ScienceFiction curr = (ScienceFiction)book;
+            ScienceFiction curr = CastType<ScienceFiction>(book);
             curr.IsEarth = CheckFictFantFairyIsEarth.IsChecked.Value;
             book = curr;
         }
@@ -220,7 +226,9 @@ namespace Lab_3._3
                 groupsMainList[ChooseGenre.SelectedIndex].Visibility = Visibility.Visible;
                 ActionCreation = new Action(CreateBook);
                 //ActionCreation += resultDictionary[ChooseGenre.Text];
-                ActionCreation += resultDictionary[GetString(ChooseGenre)];
+                ActionCreation += resultDictionary[GetString(ChooseGenre)].DataUpdate;
+                BtnAdd.IsEnabled = (resultDictionary[GetString(ChooseGenre)].isFinal);
+                if (BtnAdd.IsEnabled) requestedValue = GetString(ChooseGenre);
             }
         }
 
@@ -235,8 +243,10 @@ namespace Lab_3._3
                 }
                 groupsHistList[ChooseHistType.SelectedIndex].Visibility = Visibility.Visible;
                 ActionCreation = new Action(CreateBook);
-                ActionCreation += resultDictionary[GetString(ChooseGenre)];
-                ActionCreation += resultDictionary[GetString(ChooseHistType)];
+                ActionCreation += resultDictionary[GetString(ChooseGenre)].DataUpdate;
+                ActionCreation += resultDictionary[GetString(ChooseHistType)].DataUpdate;
+                BtnAdd.IsEnabled = (resultDictionary[GetString(ChooseHistType)].isFinal);
+                if (BtnAdd.IsEnabled) requestedValue = GetString(ChooseHistType);
             }
         }
 
@@ -253,8 +263,10 @@ namespace Lab_3._3
                 HideGroups("FictFantType");
                 groupsFictList[ChooseFictType.SelectedIndex].Visibility = Visibility.Visible;
                 ActionCreation = new Action(CreateBook);
-                ActionCreation += resultDictionary[GetString(ChooseGenre)];
-                ActionCreation += resultDictionary[GetString(ChooseFictType)];
+                ActionCreation += resultDictionary[GetString(ChooseGenre)].DataUpdate;
+                ActionCreation += resultDictionary[GetString(ChooseFictType)].DataUpdate;
+                BtnAdd.IsEnabled = (resultDictionary[GetString(ChooseFictType)].isFinal);
+                if (BtnAdd.IsEnabled) requestedValue = GetString(ChooseFictType);
             }
         }
 
@@ -269,15 +281,18 @@ namespace Lab_3._3
                 }
                 groupsFictFantList[ChooseFictFantType.SelectedIndex].Visibility = Visibility.Visible;
                 ActionCreation = new Action(CreateBook);
-                ActionCreation += resultDictionary[GetString(ChooseGenre)];
-                ActionCreation += resultDictionary[GetString(ChooseFictType)];
-                ActionCreation += resultDictionary[GetString(ChooseFictFantType)];
+                ActionCreation += resultDictionary[GetString(ChooseGenre)].DataUpdate;
+                ActionCreation += resultDictionary[GetString(ChooseFictType)].DataUpdate;
+                ActionCreation += resultDictionary[GetString(ChooseFictFantType)].DataUpdate;
+                BtnAdd.IsEnabled = (resultDictionary[GetString(ChooseFictFantType)].isFinal);
+                if (BtnAdd.IsEnabled) requestedValue = GetString(ChooseFictFantType);
             }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             ActionCreation();
+            bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Type = requestedValue, Name = book.Name, Author = book.Author, Data = book });
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)

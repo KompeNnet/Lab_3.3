@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_3._3"
         mc:Ignorable="d"
-        Title="JSON Serialization" Height="384" Width="748">
+        Title="JSON Serialization" Height="384" Width="874">
     <Grid>
         <Label Content="Author" HorizontalAlignment="Left" Height="28" Margin="10,27,0,0" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="InpAuthor" HorizontalAlignment="Left" Height="22" Margin="10,55,0,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top" Width="134"/>
@@ -35,7 +35,7 @@
                 <TextBox x:Name="InpFictAge" Height="22" Margin="10,87,206,0" TextWrapping="Wrap" MaxLines="1" MaxLength="36" VerticalAlignment="Top"/>
 
                 <ComboBox x:Name="ChooseFictType" HorizontalAlignment="Left" Height="22" Margin="10,137,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="ChooseFictType_SelectionChanged">
-                    <ListBoxItem Content="Fantastic tales"/>
+                    <ListBoxItem Content="FantasticTales"/>
                     <ListBoxItem Content="Travelling"/>
                 </ComboBox>
 
@@ -53,7 +53,7 @@
                         <Label Content="Type" Margin="10,0,45,32" Height="28" VerticalAlignment="Bottom"/>
                         <ComboBox x:Name="ChooseFictFantType" Margin="10,0,10,10" Height="22" VerticalAlignment="Bottom" SelectionChanged="ChooseFictFantType_SelectionChanged">
                             <ListBoxItem Content="FairyTales"/>
-                            <ListBoxItem Content="Science Fiction"/>
+                            <ListBoxItem Content="ScienceFiction"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
@@ -105,17 +105,18 @@
 
         <GroupBox BorderThickness="0" Margin="516,10,0,0">
             <Grid Margin="0,0,-2,0">
-                <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="10,10,0,0" Click="BtnAdd_Click"/>
-                <Button x:Name="BtnRemove" Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="75,10,0,0" Click="BtnRemove_Click"/>
-                <Button x:Name="BtnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="140,10,0,0" Click="BtnSubmit_Click"/>
-                <Button x:Name="BtnSerialize" Content="Serialize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="10,35,0,0" Click="BtnSerialize_Click"/>
-                <Button x:Name="BtnDeerialize" Content="Deserialize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="107,35,0,0" Click="BtnDeerialize_Click"/>
-                <ListView x:Name="bookListForm" HorizontalAlignment="Left" Height="277" Margin="10,60,0,0" VerticalAlignment="Top" Width="189">
+                <Button x:Name="BtnAdd" Content="Add" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="10,10,0,0" Click="BtnAdd_Click"/>
+                <Button x:Name="BtnRemove" Content="Remove" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="75,10,0,0" Click="BtnRemove_Click"/>
+                <Button x:Name="BtnSubmit" Content="Submit" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="140,10,0,0" Click="BtnSubmit_Click"/>
+                <Button x:Name="BtnSerialize" Content="Serialize" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="205,10,0,0" Click="BtnSerialize_Click"/>
+                <Button x:Name="BtnDeserialize" Content="Deserialize" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="270,10,-22,0" Click="BtnDeerialize_Click"/>
+                <ListView x:Name="bookListForm" Height="277" Margin="10,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="№" Width="18" DisplayMemberBinding="{Binding Id}"/>
-                            <GridViewColumn Header="Name" Width="84" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Header="Author" Width="80" DisplayMemberBinding="{Binding Author}"/>
+                            <GridViewColumn Header="№" Width="21" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Type" Width="87" DisplayMemberBinding="{Binding Type}"/>
+                            <GridViewColumn Header="Name" Width="103" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Author" Width="99" DisplayMemberBinding="{Binding Author}"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
                         </GridView>
                     </ListView.View>
