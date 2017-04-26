@@ -59,7 +59,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Loaders\BookLoader.cs" />
-    <Compile Include="Helpers\Finalization.cs" />
     <Compile Include="Helpers\FormCreator.cs" />
     <Compile Include="Helpers\ItemInList.cs" />
     <Compile Include="Helpers\LoaderManager.cs" />

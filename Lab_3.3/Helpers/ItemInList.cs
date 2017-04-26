@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lab_3._3.Books;
+﻿using Lab_3._3.Books;
 
 namespace Lab_3._3.Helpers
 {

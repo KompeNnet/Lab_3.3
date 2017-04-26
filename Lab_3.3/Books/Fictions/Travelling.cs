@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-
-namespace Lab_3._3.Books.Fictions
+﻿namespace Lab_3._3.Books.Fictions
 {
     class Travelling : Fiction
     {
         public string Countries { get; set; }
+
+        public Travelling() { }
+
+        public Travelling(Fiction f) : base(f) { }
+
+        public Travelling(Travelling t) : base(t)
+        {
+            this.Countries = t.Countries;
+        }
     }
 }

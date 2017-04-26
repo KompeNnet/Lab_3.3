@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Lab_3._3.Loaders;
+using Lab_3._3.Loaders.FictionsLoaders;
+using Lab_3._3.Loaders.HistoryLoaders;
 
 namespace Lab_3._3.Helpers
 {
@@ -11,7 +9,7 @@ namespace Lab_3._3.Helpers
     {
         private static Dictionary<string, BookLoader> loaderDict = new Dictionary<string, BookLoader>
         {
-            { "Book", new BookLoader() }/*,
+            { "Book", new BookLoader() },
             { "Encyclopedia", new EncyclopediaLoader() },
             { "Historical", new HistoricalLoader() },
             { "Art", new ArtLoader() },
@@ -20,7 +18,7 @@ namespace Lab_3._3.Helpers
             { "Travelling", new TravellingLoader() },
             { "FantasticTales", new FantasticTalesLoader() },
             { "ScienceFiction", new ScienceFictionLoader() },
-            { "FairyTales", new FairyTalesLoader() }*/
+            { "FairyTales", new FairyTalesLoader() }
         };
 
         public static BookLoader GetLoader(string key)

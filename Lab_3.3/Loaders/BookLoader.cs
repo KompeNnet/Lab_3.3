@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lab_3._3.Books;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
+using Lab_3._3.Books;
 using Lab_3._3.Helpers;
 
 namespace Lab_3._3.Loaders
@@ -59,7 +56,7 @@ namespace Lab_3._3.Loaders
 
                 Grid newGrid = b.Load(b.BaseCreate(oldGroupBox));                               // creating new grid
 
-                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 500);
+                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
                 newGroupBox.Content = newGrid;
 
                 p.Children.Add(newGroupBox);									// add new groupBox to form

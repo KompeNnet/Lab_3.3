@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Lab_3._3.Helpers
@@ -29,12 +24,14 @@ namespace Lab_3._3.Helpers
             return g;
         }
 
-        public static GroupBox CreateGroupBox(string name, string header, Thickness margin, int width)
+        public static GroupBox CreateGroupBox(string name, string header, Thickness margin, int width, int height)
         {
             GroupBox g = new GroupBox();
             g.Name = name;
             g.Header = header;
+            g.Height = height;
             g.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            g.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             g.Width = width;
             g.Margin = margin;
             return g;
@@ -60,7 +57,7 @@ namespace Lab_3._3.Helpers
             l.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             l.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             l.Height = 28;
-            l.Width = 98;
+            l.Width = 134;
             l.Margin = margin;
             return l;
         }

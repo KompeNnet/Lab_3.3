@@ -1,23 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using Lab_3._3.Books;
-using Lab_3._3.Books.Fictions;
-using Lab_3._3.Books.History;
 using Lab_3._3.Helpers;
+using Lab_3._3.Loaders;
 
 namespace Lab_3._3
 {
@@ -29,12 +14,22 @@ namespace Lab_3._3
         public MainWindow()
         {
             InitializeComponent();
-            GroupBox newGroupBox = FormCreator.CreateGroupBox("MinGroup", "Book", new Thickness(0, 0, 0, 0), 500);
+            GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
+            newGroupBox.Content = new BookLoader().Load(new Book());
+
+            MainGrid.Children.Add(newGroupBox);
+
+            BtnAdd.Click += new RoutedEventHandler(new BookLoader().BtnAdd_Click);
         }
 
         private dynamic CastType<T>(dynamic book)
         {
             return Serializer.Deserialize<T>(Serializer.Serialize(book));
+        }
+
+        private void UploadInfo(Book book)
+        {
+            //TODO
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
