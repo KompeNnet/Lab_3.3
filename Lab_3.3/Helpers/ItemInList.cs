@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lab_3._3.Books;
 
-namespace Lab_3._3.Classes
+namespace Lab_3._3.Helpers
 {
     class ItemInList
     {

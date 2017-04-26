@@ -58,9 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\Finalization.cs" />
-    <Compile Include="Classes\ItemInList.cs" />
-    <Compile Include="Classes\Serializer.cs" />
+    <Compile Include="Loaders\BookLoader.cs" />
+    <Compile Include="Helpers\Finalization.cs" />
+    <Compile Include="Helpers\FormCreator.cs" />
+    <Compile Include="Helpers\ItemInList.cs" />
+    <Compile Include="Helpers\LoaderManager.cs" />
+    <Compile Include="Helpers\Serializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +82,15 @@
     <Compile Include="Books\Fictions\FantasticTales.cs" />
     <Compile Include="Books\Fictions\ScienceFiction.cs" />
     <Compile Include="Books\Fictions\Travelling.cs" />
+    <Compile Include="Loaders\EncyclopediaLoader.cs" />
+    <Compile Include="Loaders\FictionLoader.cs" />
+    <Compile Include="Loaders\FictionsLoaders\FairyTalesLoader.cs" />
+    <Compile Include="Loaders\FictionsLoaders\FantasticTalesLoader.cs" />
+    <Compile Include="Loaders\FictionsLoaders\ScienceFictionLoader.cs" />
+    <Compile Include="Loaders\FictionsLoaders\TravellingLoader.cs" />
+    <Compile Include="Loaders\HistoricalLoader.cs" />
+    <Compile Include="Loaders\HistoryLoaders\ArtLoader.cs" />
+    <Compile Include="Loaders\HistoryLoaders\BiographyLoader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -102,7 +114,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
