@@ -7,17 +7,15 @@
         mc:Ignorable="d"
         Title="JSON Serialization" Height="426" Width="909">
     <Grid x:Name="MainGrid">
-        <GroupBox x:Name="GroupBtnsList" BorderThickness="0" Margin="516,10,0,0">
-            <ListView x:Name="BookListForm" Margin="20,49,0,0" SelectionChanged="BookListForm_SelectionChanged" HorizontalAlignment="Left" Width="320" Height="312" VerticalAlignment="Top">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Type" Width="94" DisplayMemberBinding="{Binding Type}"/>
-                        <GridViewColumn Header="Name" Width="111" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Author" Width="107" DisplayMemberBinding="{Binding Author}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
+        <ListView x:Name="BookListForm" Margin="542,60,0,0" SelectionChanged="BookListForm_SelectionChanged" HorizontalAlignment="Left" Width="320" Height="312" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="94" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Name" Width="111" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Author" Width="107" DisplayMemberBinding="{Binding Author}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
