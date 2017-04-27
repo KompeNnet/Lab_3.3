@@ -21,6 +21,16 @@ namespace Lab_3._3.Helpers
             { "FairyTales", new FairyTalesLoader() }
         };
 
+        public static List<string> resultist = new List<string>
+        {
+            "Encyclopedia",
+            "Art",
+            "Biography",
+            "Travelling",
+            "ScienceFiction",
+            "FairyTales"
+        };
+
         public static BookLoader GetLoader(string key)
         {
             return loaderDict[key];

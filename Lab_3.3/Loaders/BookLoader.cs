@@ -43,11 +43,14 @@ namespace Lab_3._3.Loaders
             return g;
         }
 
-        public GroupBox CreateButtonsGroup()
+        public GroupBox CreateButtonsGroup(string bookType)
         {
             Grid g = FormCreator.CreateGrid(new Thickness(0, 0, 0, 0));
 
-            g.Children.Add(FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click));
+            Button btnAddTemp = FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click);
+            btnAddTemp.IsEnabled = LoaderManager.resultist.Contains(bookType);
+            g.Children.Add(btnAddTemp);
+
             g.Children.Add(FormCreator.CreateButton("BtnRemove", "Remove", new Thickness(75, 0, 0, 0), BtnRemove_Click));
             g.Children.Add(FormCreator.CreateButton("BtnSubmit", "Submit", new Thickness(140, 0, 0, 0), BtnSubmit_Click));
             g.Children.Add(FormCreator.CreateButton("BtnSerialize", "Serialize", new Thickness(205, 0, 0, 0), BtnSerialize_Click));
@@ -79,7 +82,7 @@ namespace Lab_3._3.Loaders
             string type = ((GroupBox)temp[temp.Count - 2]).Header.ToString();   // get pre-last GroupBox Header, because last one is ButtonGroupBox
 
             ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
-            bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Type = type, Name = book.Name, Author = book.Author, Data = book });
+            bookListForm.Items.Add(new ItemInList { Type = type, Name = book.Name, Author = book.Author, Data = book });
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
@@ -128,7 +131,7 @@ namespace Lab_3._3.Loaders
                 var b = LoaderManager.GetLoader(selectedText);      // select Loader
 
                 Grid newGrid = b.Load(b.BaseCreate(oldGroupBox));   // create new Grid
-                newGrid.Children.Add(b.CreateButtonsGroup());         // add buttons on it
+                newGrid.Children.Add(b.CreateButtonsGroup(selectedText));         // add buttons on it
 
                 GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 887, 384);
                 newGroupBox.Content = newGrid;                      // wrap Grid into new MainGroupBox

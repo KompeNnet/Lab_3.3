@@ -12,8 +12,8 @@ namespace Lab_3._3.Helpers
             b.Margin = margin;
             b.Name = name;
             b.Content = content;
-            b.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            b.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            b.HorizontalAlignment = HorizontalAlignment.Left;
+            b.VerticalAlignment = VerticalAlignment.Top;
             b.Width = 60;
             b.Click += new RoutedEventHandler(btnClick);
             return b;
@@ -25,7 +25,7 @@ namespace Lab_3._3.Helpers
             ch.Margin = margin;
             ch.Name = name;
             ch.Content = content;
-            ch.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            ch.VerticalAlignment = VerticalAlignment.Top;
             ch.Height = 18;
             ch.IsChecked = val;
             return ch;
@@ -44,8 +44,8 @@ namespace Lab_3._3.Helpers
             g.Name = name;
             g.Header = header;
             g.Height = height;
-            g.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            g.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            g.HorizontalAlignment = HorizontalAlignment.Left;
+            g.VerticalAlignment = VerticalAlignment.Top;
             g.Width = width;
             g.Margin = margin;
             return g;
@@ -55,8 +55,8 @@ namespace Lab_3._3.Helpers
         {
             ComboBox c = new ComboBox();
             c.Name = name;
-            c.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            c.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            c.HorizontalAlignment = HorizontalAlignment.Left;
+            c.VerticalAlignment = VerticalAlignment.Top;
             c.Height = 22;
             c.Width = 134;
             c.Margin = margin;
@@ -68,8 +68,8 @@ namespace Lab_3._3.Helpers
         {
             Label l = new Label();
             l.Content = content;
-            l.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            l.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            l.HorizontalAlignment = HorizontalAlignment.Left;
+            l.VerticalAlignment = VerticalAlignment.Top;
             l.Height = 28;
             l.Width = 134;
             l.Margin = margin;
@@ -80,12 +80,12 @@ namespace Lab_3._3.Helpers
         {
             TextBox t = new TextBox();
             t.Name = name;
-            t.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            t.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            t.HorizontalAlignment = HorizontalAlignment.Left;
+            t.VerticalAlignment = VerticalAlignment.Top;
             t.Height = 22;
             t.Width = 134;
             t.Margin = margin;
-            t.TextWrapping = System.Windows.TextWrapping.Wrap;
+            t.TextWrapping = TextWrapping.Wrap;
             t.MaxLines = 1;
             t.MaxLength = 36;
             t.Text = text;
