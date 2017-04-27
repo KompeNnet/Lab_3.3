@@ -14,12 +14,13 @@ namespace Lab_3._3
         public MainWindow()
         {
             InitializeComponent();
-            GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
-            newGroupBox.Content = new BookLoader().Load(new Book());
+
+            GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 887, 384);
+            Grid g = new BookLoader().Load(new Book());
+            g.Children.Add(new BookLoader().CreateButtonsGroup());
+            newGroupBox.Content = g;
 
             MainGrid.Children.Add(newGroupBox);
-
-            BtnAdd.Click += new RoutedEventHandler(new BookLoader().BtnAdd_Click);
         }
 
         private dynamic CastType<T>(dynamic book)
@@ -27,48 +28,22 @@ namespace Lab_3._3
             return Serializer.Deserialize<T>(Serializer.Serialize(book));
         }
 
-        private void UploadInfo(Book book)
-        {
-            //TODO
-        }
-
-        private void BtnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            while (BookListForm.SelectedItems.Count > 0)
-            {
-                BookListForm.Items.Remove(BookListForm.SelectedItems[0]);
-            }
-        }
-
-        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO
-        }
-
-        private void BtnSerialize_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO
-        }
-
-        private void BtnDeserialize_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO
-        }
-
         private void BookListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BookListForm.SelectedIndex != -1)
             {
-                BtnRemove.IsEnabled = true;
-                BtnSerialize.IsEnabled = true;
-                BtnSubmit.IsEnabled = true;
+                MainGrid.Children.RemoveAt(1);
+
                 ItemInList elem = (ItemInList)BookListForm.Items.GetItemAt(BookListForm.SelectedIndex);
-            }
-            else
-            {
-                BtnRemove.IsEnabled = false;
-                BtnSerialize.IsEnabled = false;
-                BtnSubmit.IsEnabled = false;
+
+                var loader = LoaderManager.GetLoader(elem.Type);
+
+                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
+                Grid g = loader.Load(elem.Data);
+                g.Children.Add(loader.CreateButtonsGroup());
+                newGroupBox.Content = g;
+
+                MainGrid.Children.Add(newGroupBox);
             }
         }
     }

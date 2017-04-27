@@ -5,26 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_3._3"
         mc:Ignorable="d"
-        Title="JSON Serialization" Height="426" Width="874">
+        Title="JSON Serialization" Height="426" Width="909">
     <Grid x:Name="MainGrid">
         <GroupBox x:Name="GroupBtnsList" BorderThickness="0" Margin="516,10,0,0">
-            <Grid Margin="0,0,0,0">
-                <Button x:Name="BtnAdd" Content="Add"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="10,10,0,0"/>
-                <Button x:Name="BtnRemove" Content="Remove" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="75,10,0,0" Click="BtnRemove_Click"/>
-                <Button x:Name="BtnSubmit" Content="Submit" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="140,10,0,0" Click="BtnSubmit_Click"/>
-                <Button x:Name="BtnSerialize" Content="Serialize" IsEnabled="false" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="205,10,0,0" Click="BtnSerialize_Click"/>
-                <Button x:Name="BtnDeserialize" Content="Deserialize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="270,10,-22,0" Click="BtnDeserialize_Click"/>
-                <ListView x:Name="BookListForm" Height="292" Margin="10,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" SelectionChanged="BookListForm_SelectionChanged">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Type" Width="95" DisplayMemberBinding="{Binding Type}"/>
-                            <GridViewColumn Header="Name" Width="111" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Header="Author" Width="107" DisplayMemberBinding="{Binding Author}"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
+            <ListView x:Name="BookListForm" Margin="20,49,0,0" SelectionChanged="BookListForm_SelectionChanged" HorizontalAlignment="Left" Width="320" Height="312" VerticalAlignment="Top">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Type" Width="94" DisplayMemberBinding="{Binding Type}"/>
+                        <GridViewColumn Header="Name" Width="111" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Author" Width="107" DisplayMemberBinding="{Binding Author}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Data}" Width="0"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </GroupBox>
     </Grid>
 </Window>

@@ -1,10 +1,24 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Lab_3._3.Helpers
 {
     class FormCreator
     {
+        public static Button CreateButton(string name, string content, Thickness margin, Action<object, RoutedEventArgs> btnClick)
+        {
+            Button b = new Button();
+            b.Margin = margin;
+            b.Name = name;
+            b.Content = content;
+            b.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            b.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            b.Width = 60;
+            b.Click += new RoutedEventHandler(btnClick);
+            return b;
+        }
+
         public static CheckBox CreateCheckBox(string name, string content, Thickness margin, bool val)
         {
             CheckBox ch = new CheckBox();

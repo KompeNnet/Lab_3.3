@@ -43,48 +43,98 @@ namespace Lab_3._3.Loaders
             return g;
         }
 
+        public GroupBox CreateButtonsGroup()
+        {
+            Grid g = FormCreator.CreateGrid(new Thickness(0, 0, 0, 0));
+
+            g.Children.Add(FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click));
+            g.Children.Add(FormCreator.CreateButton("BtnRemove", "Remove", new Thickness(75, 0, 0, 0), BtnRemove_Click));
+            g.Children.Add(FormCreator.CreateButton("BtnSubmit", "Submit", new Thickness(140, 0, 0, 0), BtnSubmit_Click));
+            g.Children.Add(FormCreator.CreateButton("BtnSerialize", "Serialize", new Thickness(205, 0, 0, 0), BtnSerialize_Click));
+            g.Children.Add(FormCreator.CreateButton("BtnDeserialize", "Deserialize", new Thickness(270, 0, 0, 0), BtnDeserialize_Click));
+
+            GroupBox gb = FormCreator.CreateGroupBox("ButtonGroup", "", new Thickness(520, 0, 0, 0), 352, 362);
+            gb.Content = g;
+
+            return gb;
+        }
+
+        private GroupBox GetMainGroupBox(object o)
+        {
+            FrameworkElement parent = (FrameworkElement)((FrameworkElement)o).Parent;
+            if (parent.Name == "MainGroup") return (GroupBox)parent;                 // found MainGroupBox
+            else return GetMainGroupBox(parent);
+        }
+
+        // EVENTS
+
+        public void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
+            Grid g = (Grid)gr.Parent;                               // MainGrid
+
+            dynamic book = Create(gr);                              // create new book based on layout
+
+            var temp = ((Grid)gr.Content).Children;                 // get all children of MainGroupBox
+            string type = ((GroupBox)temp[temp.Count - 2]).Header.ToString();   // get pre-last GroupBox Header, because last one is ButtonGroupBox
+
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+            bookListForm.Items.Add(new ItemInList { Id = bookListForm.Items.Count + 1, Type = type, Name = book.Name, Author = book.Author, Data = book });
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
+            Grid g = (Grid)gr.Parent;                               // MainGrid
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+
+            while (bookListForm.SelectedItems.Count > 0)
+            {
+                bookListForm.Items.Remove(bookListForm.SelectedItems[0]);
+            }
+        }
+
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+            // like BtnAdd_Click
+            // + get BookListForm.SelectedIndex and replace this item with book
+        }
+
+        private void BtnSerialize_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO
+            // get BookListForm.SelectedItems (data & type)
+            // serialize each as you wish (I prefer the following json { type: "Type", book: Object } )
+            // write to file
+        }
+
+        private void BtnDeserialize_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO 
+            // read file, deserialize
+        }
+
         protected void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((ComboBox)sender).IsDropDownOpen)
             {
-                string selectedText = ((ComboBox)sender).SelectedValue.ToString(); //GetString((ComboBox)sender);
-                GroupBox oldGroupBox = GetGroupBox(sender);     // getting old groupBox with all textboxes, labels and comboboxes
-                Grid p = (Grid)oldGroupBox.Parent;
-                p.Children.Remove(oldGroupBox);                             // now we deleting this groupBox from its parent
+                string selectedText = ((ComboBox)sender).SelectedValue.ToString();
 
-                var b = LoaderManager.GetLoader(selectedText);
+                GroupBox oldGroupBox = GetMainGroupBox(sender);     // MainGroupBox
+                Grid p = (Grid)oldGroupBox.Parent;                  // MainGrid
+                p.Children.Remove(oldGroupBox);                     // delete old MainGroupBox
 
-                Grid newGrid = b.Load(b.BaseCreate(oldGroupBox));                               // creating new grid
+                var b = LoaderManager.GetLoader(selectedText);      // select Loader
 
-                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
-                newGroupBox.Content = newGrid;
+                Grid newGrid = b.Load(b.BaseCreate(oldGroupBox));   // create new Grid
+                newGrid.Children.Add(b.CreateButtonsGroup());         // add buttons on it
 
-                p.Children.Add(newGroupBox);									// add new groupBox to form
+                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 887, 384);
+                newGroupBox.Content = newGrid;                      // wrap Grid into new MainGroupBox
 
-                GroupBox displayGroupBox = p.Children.OfType<GroupBox>().First(x => x.Name == "GroupBtnsList");
-                IEnumerable<Button> btnList = ((Grid)displayGroupBox.Content).Children.OfType<Button>();
-
-                Button addButton = btnList.First(x => x.Name == "BtnAdd");
-                addButton.Click += new RoutedEventHandler(BtnAdd_Click);
+                p.Children.Add(newGroupBox);                        // add to MainGrid
             }
-        }
-
-        public void BtnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            GroupBox gr = GetGroupBox(sender);
-            Grid g = (Grid)gr.Parent;
-
-            dynamic book = this.Create(gr);
-
-            ListView bookListForm = (ListView)g.FindName("BookListForm");
-            bookListForm.Items.Add(new ItemInList { Type = "Book", Name = book.Name, Author = book.Author, Data = book });
-        }
-
-        private GroupBox GetGroupBox(object o)
-        {
-            FrameworkElement parent = (FrameworkElement)((FrameworkElement)o).Parent;
-            if (parent.Name == "MainGroup") return (GroupBox)parent;
-            else return GetGroupBox(parent);
         }
     }
 }
