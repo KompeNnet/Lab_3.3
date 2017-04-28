@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-
-namespace Lab_3._3.Books
+﻿namespace Lab_3._3.Books
 {
     public class Book
     {
@@ -13,5 +6,15 @@ namespace Lab_3._3.Books
         public string Name { get; set; }
         public string PublishingOffice { get; set; }
         public string Genre { get; set; }
+
+        public Book() { }
+
+        public Book(Book b)
+        {
+            this.Author = b.Author;
+            this.Name = b.Name;
+            this.PublishingOffice = b.PublishingOffice;
+            this.Genre = b.Genre;
+        }
     }
 }
