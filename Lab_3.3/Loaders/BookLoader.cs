@@ -49,12 +49,15 @@ namespace Lab_3._3.Loaders
         {
             Grid g = FormCreator.CreateGrid(new Thickness(0, 0, 0, 0));
 
-            Button btnAddTemp = FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click);
-            btnAddTemp.IsEnabled = LoaderManager.resultList.Contains(bookType);
-            g.Children.Add(btnAddTemp);
+            Button btnTemp = FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click);
+            btnTemp.IsEnabled = LoaderManager.resultList.Contains(bookType);
+            g.Children.Add(btnTemp);
 
             g.Children.Add(FormCreator.CreateButton("BtnRemove", "Remove", new Thickness(75, 0, 0, 0), BtnRemove_Click));
-            g.Children.Add(FormCreator.CreateButton("BtnSubmit", "Submit", new Thickness(140, 0, 0, 0), BtnSubmit_Click));
+
+            btnTemp = FormCreator.CreateButton("BtnSubmit", "Submit", new Thickness(140, 0, 0, 0), BtnSubmit_Click);
+            btnTemp.IsEnabled = LoaderManager.resultList.Contains(bookType);
+            g.Children.Add(btnTemp);
             g.Children.Add(FormCreator.CreateButton("BtnSerialize", "Serialize", new Thickness(205, 0, 0, 0), BtnSerialize_Click));
             g.Children.Add(FormCreator.CreateButton("BtnDeserialize", "Deserialize", new Thickness(270, 0, 0, 0), BtnDeserialize_Click));
 
