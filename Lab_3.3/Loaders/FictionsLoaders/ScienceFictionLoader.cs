@@ -44,5 +44,10 @@ namespace Lab_3._3.Loaders.FictionsLoaders
 
             return g;
         }
+
+        public override dynamic Deserialize(dynamic d)
+        {
+            return Serializer.Deserialize<ScienceFiction>(d);
+        }
     }
 }

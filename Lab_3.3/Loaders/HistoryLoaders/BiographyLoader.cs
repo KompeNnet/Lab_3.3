@@ -49,5 +49,10 @@ namespace Lab_3._3.Loaders.HistoryLoaders
 
             return g;
         }
+
+        public override dynamic Deserialize(dynamic d)
+        {
+            return Serializer.Deserialize<Biography>(d);
+        }
     }
 }

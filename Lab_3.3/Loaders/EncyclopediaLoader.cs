@@ -45,5 +45,10 @@ namespace Lab_3._3.Loaders
 
             return g;
         }
+
+        public override dynamic Deserialize(dynamic d)
+        {
+            return Serializer.Deserialize<Encyclopedia>(d);
+        }
     }
 }

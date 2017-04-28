@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Win32;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Lab_3._3.Books;
 using Lab_3._3.Helpers;
-using System.IO;
 
 namespace Lab_3._3.Loaders
 {
@@ -49,7 +50,7 @@ namespace Lab_3._3.Loaders
             Grid g = FormCreator.CreateGrid(new Thickness(0, 0, 0, 0));
 
             Button btnAddTemp = FormCreator.CreateButton("BtnAdd", "Add", new Thickness(10, 0, 0, 0), BtnAdd_Click);
-            btnAddTemp.IsEnabled = LoaderManager.resultist.Contains(bookType);
+            btnAddTemp.IsEnabled = LoaderManager.resultList.Contains(bookType);
             g.Children.Add(btnAddTemp);
 
             g.Children.Add(FormCreator.CreateButton("BtnRemove", "Remove", new Thickness(75, 0, 0, 0), BtnRemove_Click));
@@ -114,13 +115,15 @@ namespace Lab_3._3.Loaders
 
         private void BtnSerialize_Click(object sender, RoutedEventArgs e)
         {
-            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
-            Grid g = (Grid)gr.Parent;                               // MainGrid
-            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+            GroupBox gr = GetMainGroupBox(sender);
+            Grid g = (Grid)gr.Parent;
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm");
 
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.Filter = "JSON files | *.json";
-            dlg.FileName = "bookList.json";
+            SaveFileDialog dlg = new SaveFileDialog()
+            {
+                Filter = "JSON files | *.json",
+                FileName = "bookList.json"
+            };
             if (dlg.ShowDialog() == true)
             {
                 StreamWriter writer = new StreamWriter(dlg.OpenFile());
@@ -135,8 +138,30 @@ namespace Lab_3._3.Loaders
 
         private void BtnDeserialize_Click(object sender, RoutedEventArgs e)
         {
-            // TODO 
-            // read file, deserialize
+            GroupBox gr = GetMainGroupBox(sender);
+            Grid g = (Grid)gr.Parent;
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm");
+
+            OpenFileDialog dlg = new OpenFileDialog()
+            {
+                Filter = "JSON files | *.json"
+            };
+            if (dlg.ShowDialog() == true)
+            {
+                StreamReader reader = new StreamReader(dlg.OpenFile());
+                string item;
+                while ((item = reader.ReadLine()) != null)
+                {
+                    // indexof(':')?
+                    string[] words = item.Split(':');
+                    item = item.Substring(words[0].Length + 1, item.Length - words[0].Length - 1);
+                    var loader = LoaderManager.GetLoader(words[0]);
+                    Book book = loader.Deserialize(item);
+                    bookListForm.Items.Add(new ItemInList { Type = words[0], Name = book.Name, Author = book.Author, Data = book });
+                }
+                reader.Dispose();
+                reader.Close();
+            }
         }
 
         protected void SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -159,6 +184,11 @@ namespace Lab_3._3.Loaders
 
                 p.Children.Add(newGroupBox);                        // add to MainGrid
             }
+        }
+
+        public virtual dynamic Deserialize(dynamic d)
+        {
+            return Serializer.Deserialize<Book>(d);
         }
     }
 }

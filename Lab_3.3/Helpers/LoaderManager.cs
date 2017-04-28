@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Lab_3._3.Books;
+using Lab_3._3.Books.Fictions;
+using Lab_3._3.Books.History;
 using Lab_3._3.Loaders;
 using Lab_3._3.Loaders.FictionsLoaders;
 using Lab_3._3.Loaders.HistoryLoaders;
@@ -21,7 +25,7 @@ namespace Lab_3._3.Helpers
             { "FairyTales", new FairyTalesLoader() }
         };
 
-        public static List<string> resultist = new List<string>
+        public static List<string> resultList = new List<string>
         {
             "Encyclopedia",
             "Art",
