@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Lab_3._3.Books;
 using Lab_3._3.Helpers;
+using System.IO;
 
 namespace Lab_3._3.Loaders
 {
@@ -99,29 +100,38 @@ namespace Lab_3._3.Loaders
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
-            Grid g = (Grid)gr.Parent;                               // MainGrid
+            GroupBox gr = GetMainGroupBox(sender);
+            Grid g = (Grid)gr.Parent;
 
-            dynamic book = Create(gr);                              // create new book based on layout
+            dynamic book = Create(gr);
 
-            var temp = ((Grid)gr.Content).Children;                 // get all children of MainGroupBox
-            string type = ((GroupBox)temp[temp.Count - 2]).Header.ToString();   // get pre-last GroupBox Header, because last one is ButtonGroupBox
+            var temp = ((Grid)gr.Content).Children;
+            string type = ((GroupBox)temp[temp.Count - 2]).Header.ToString();
 
-            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm");
             bookListForm.Items[bookListForm.SelectedIndex] = new ItemInList { Type = type, Name = book.Name, Author = book.Author, Data = book };
-            //bookListForm.Items.Add(new ItemInList { Type = type, Name = book.Name, Author = book.Author, Data = book });
-            //TODO
-            // like BtnAdd_Click
-            // + get BookListForm.SelectedIndex and replace this item with book
-        }
+        }       // like BtnAdd_Click + get selected and replace with book
 
         private void BtnSerialize_Click(object sender, RoutedEventArgs e)
         {
-            // TODO
-            // get BookListForm.SelectedItems (data & type)
-            // serialize each as you wish (I prefer the following json { type: "Type", book: Object } )
-            // write to file
-        }
+            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
+            Grid g = (Grid)gr.Parent;                               // MainGrid
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.Filter = "JSON files | *.json";
+            dlg.FileName = "bookList.json";
+            if (dlg.ShowDialog() == true)
+            {
+                StreamWriter writer = new StreamWriter(dlg.OpenFile());
+                foreach (ItemInList item in bookListForm.SelectedItems)
+                {
+                    writer.WriteLine(item.Type + ":" + Serializer.Serialize(item.Data));
+                }
+                writer.Dispose();
+                writer.Close();
+            }
+        }    // selectedItems (data & type), serialize json { type: "Type", book: Object }, write in file
 
         private void BtnDeserialize_Click(object sender, RoutedEventArgs e)
         {
