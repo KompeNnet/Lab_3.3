@@ -34,7 +34,7 @@ namespace Lab_3._3.Loaders.HistoryLoaders
             grg.Children.Add(FormCreator.CreateLabel("Form of art", new Thickness(10, 10, 73, 0)));
             grg.Children.Add(FormCreator.CreateTextBox("InpHistArtForm", a.ArtForm, new Thickness(9, 38, 10, 0)));
 
-            GroupBox gr = FormCreator.CreateGroupBox("HistArtGroup", "Art", new Thickness(0, 115, -2, 10), 175, 384);
+            GroupBox gr = FormCreator.CreateGroupBox("HistArtGroup", "Art", new Thickness(329, 0, 10, 10), 174, 384);
             gr.Content = grg;
 
             g.Children.Add(gr);

@@ -37,7 +37,7 @@ namespace Lab_3._3.Loaders.HistoryLoaders
             grg.Children.Add(FormCreator.CreateLabel("Years of life", new Thickness(10, 60, 63, 0)));
             grg.Children.Add(FormCreator.CreateTextBox("InpHistBioYears", b.Years, new Thickness(10, 88, 10, 0)));
 
-            GroupBox gr = FormCreator.CreateGroupBox("HistBiographyGroup", "Biography", new Thickness(0, 115, 0, 10), 175, 384);
+            GroupBox gr = FormCreator.CreateGroupBox("HistBiographyGroup", "Biography", new Thickness(329, 0, 10, 10), 174, 384);
             gr.Content = grg;
 
             g.Children.Add(gr);

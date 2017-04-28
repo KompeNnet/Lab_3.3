@@ -15,8 +15,8 @@ namespace Lab_3._3.Loaders
             IEnumerable<TextBox> tbList = ((Grid)g.Content).Children.OfType<TextBox>();
 
             b.Author = tbList.First(x => x.Name == "InpAuthor").Text;
-            b.Name = tbList.First(x => x.Name == "InpAuthor").Text;
-            b.PublishingOffice = tbList.First(x => x.Name == "InpAuthor").Text;
+            b.Name = tbList.First(x => x.Name == "InpName").Text;
+            b.PublishingOffice = tbList.First(x => x.Name == "InpPublishing").Text;
             return b;
         }
 
@@ -75,7 +75,7 @@ namespace Lab_3._3.Loaders
         {
             GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
             Grid g = (Grid)gr.Parent;                               // MainGrid
-
+            
             dynamic book = Create(gr);                              // create new book based on layout
 
             var temp = ((Grid)gr.Content).Children;                 // get all children of MainGroupBox
@@ -99,6 +99,17 @@ namespace Lab_3._3.Loaders
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            GroupBox gr = GetMainGroupBox(sender);                  // MainGroupBox
+            Grid g = (Grid)gr.Parent;                               // MainGrid
+
+            dynamic book = Create(gr);                              // create new book based on layout
+
+            var temp = ((Grid)gr.Content).Children;                 // get all children of MainGroupBox
+            string type = ((GroupBox)temp[temp.Count - 2]).Header.ToString();   // get pre-last GroupBox Header, because last one is ButtonGroupBox
+
+            ListView bookListForm = g.Children.OfType<ListView>().First(x => x.Name == "BookListForm"); // find BookListForm
+            bookListForm.Items[bookListForm.SelectedIndex] = new ItemInList { Type = type, Name = book.Name, Author = book.Author, Data = book };
+            //bookListForm.Items.Add(new ItemInList { Type = type, Name = book.Name, Author = book.Author, Data = book });
             //TODO
             // like BtnAdd_Click
             // + get BookListForm.SelectedIndex and replace this item with book

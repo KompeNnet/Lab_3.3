@@ -23,11 +23,6 @@ namespace Lab_3._3
             MainGrid.Children.Add(newGroupBox);
         }
 
-        private dynamic CastType<T>(dynamic book)
-        {
-            return Serializer.Deserialize<T>(Serializer.Serialize(book));
-        }
-
         private void BookListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BookListForm.SelectedIndex != -1)
@@ -38,7 +33,7 @@ namespace Lab_3._3
 
                 var loader = LoaderManager.GetLoader(elem.Type);
 
-                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 524, 384);
+                GroupBox newGroupBox = FormCreator.CreateGroupBox("MainGroup", "Book", new Thickness(0, 0, 0, 0), 887, 384);
                 Grid g = loader.Load(elem.Data);
                 g.Children.Add(loader.CreateButtonsGroup(elem.Type));
                 newGroupBox.Content = g;
