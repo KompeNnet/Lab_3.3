@@ -32,7 +32,7 @@ namespace Lab_3._3.Loaders.FictionsLoaders
             Grid grg = FormCreator.CreateGrid(new Thickness(0, 0, 0, 0));
             grg.Children.Add(FormCreator.CreateCheckBox("CheckFictFantFairyIsEarth", "is Earth", new Thickness(10, 10, 10, 0), s.IsEarth));
 
-            GroupBox gr = FormCreator.CreateGroupBox("FictFantScienceFictionGroup", "Science Fiction", new Thickness(332, 184, 0, 0), 165, 170);
+            GroupBox gr = FormCreator.CreateGroupBox("FictFantScienceFictionGroup", "ScienceFiction", new Thickness(332, 184, 0, 0), 165, 170);
             gr.Content = grg;
 
             g.Children.Add(gr);

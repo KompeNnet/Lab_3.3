@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab_3._3.App" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lab_3._3.Books.Book" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAIAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Encyclopedia" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Encyclopedia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Fiction" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Books\Fiction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Historical" Collapsed="true">
+    <Position X="10.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Books\Historical.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Fictions.FairyTales" Collapsed="true">
+    <Position X="2.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Fictions\FairyTales.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Fictions.FantasticTales" Collapsed="true">
+    <Position X="3.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Fictions\FantasticTales.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Fictions.ScienceFiction" Collapsed="true">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Fictions\ScienceFiction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.Fictions.Travelling" Collapsed="true">
+    <Position X="7.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\Fictions\Travelling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.History.Art" Collapsed="true">
+    <Position X="9.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\History\Art.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Books.History.Biography" Collapsed="true">
+    <Position X="11.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Books\History\Biography.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Helpers.FormCreator" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAgAAAAAAYAAAAAABAAEQAAA=</HashCode>
+      <FileName>Helpers\FormCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Helpers.ItemInList" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAAAAABAAAQAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ItemInList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Helpers.LoaderManager" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Helpers\LoaderManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Helpers.Serializer" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Serializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.BookLoader" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgQAAAAAABAAAAAAACBAAAABAIEAAAAAAQgEAAAA=</HashCode>
+      <FileName>Loaders\BookLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.EncyclopediaLoader" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\EncyclopediaLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.FictionLoader" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\FictionLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.HistoricalLoader" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\HistoricalLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.FictionsLoaders.FairyTalesLoader" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\FictionsLoaders\FairyTalesLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.FictionsLoaders.FantasticTalesLoader" Collapsed="true">
+    <Position X="1.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\FictionsLoaders\FantasticTalesLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.FictionsLoaders.ScienceFictionLoader" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\FictionsLoaders\ScienceFictionLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.FictionsLoaders.TravellingLoader" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\FictionsLoaders\TravellingLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.HistoryLoaders.ArtLoader" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\HistoryLoaders\ArtLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Loaders.HistoryLoaders.BiographyLoader" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Loaders\HistoryLoaders\BiographyLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Properties.Resources" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_3._3.Properties.Settings" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
